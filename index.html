@@ -2,28 +2,32 @@
 <html>
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />		
+		<link rel="stylesheet" href="css/styles.css" />
 		<title>Effective JavaScript: Frogger</title>
-		<link rel="stylesheet" href="css/modal.css" />
-		<link rel="stylesheet" href="css/style.css" />
 	</head>
 
-	<body>
-		<div class="Title"><h1>Classic Arcade Game</h1></div>
+	<body>		
+		<h1>
+			Classic Arcade Game
+		</h1>		
 
-		<div class="game-stats">
-			<div id="life"></div>
-			<div id="score"></div>
+		<div id="game-stats">
+			<span id="life"></span> | <span id="score"></span>
 		</div>
 		<!-- Modal -->
 		<div id="my-modal" class="modal">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h2>Congratulations for successful completion!</h2>
+					<h2></h2>
 				</div>
-				<div class="modal-body"><p></p></div>
+				<div class="modal-body">
+					<p></p>
+				</div>
 				<div class="modal-footer">
-					<button id="modal-btn">Play Again</button>
+					<button id="modal-btn">
+						Play Again
+					</button>
 				</div>
 			</div>
 		</div>

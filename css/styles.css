@@ -1,12 +1,25 @@
-html,
-body {
+* {
   margin: 0;
   padding: 0;
 }
-
 body {
   font-family: Arial, Helvetica, sans-serif;
+  background: #fff url("../images/geometry.png");
   font-size: 16px;
+  color: #0018f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  margin: 2vh 0;
+}
+
+#game-stats {
+  font-size: 25px;
+  margin-bottom: -30px;
 }
 
 .modal {
@@ -18,7 +31,7 @@ body {
   height: 100%;
   width: 100%;
   overflow: auto;
-  background-color: rgba(36, 198, 220, 0.5);
+  background-color: rgba(244, 67, 54, 0.9);
 }
 
 .modal-content {
@@ -26,8 +39,8 @@ body {
   background-image: url("../images/win_banner.png");
   background-position: center;
   background-size: cover;
-  margin: 12% auto;
-  width: 30%;
+  margin: 30vh auto;
+  width: 37vw;
   box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.25);
   animation-name: modalopen;
   animation-duration: 2s;
@@ -44,36 +57,32 @@ body {
 
 .modal-header {
   display: flex;
-  justify-content: center;
   align-items: center;
-  color: #f00;
+  justify-content: center;
+  color: #fff;
+  height: 8vh;
 }
 
 .modal-body {
   text-align: center;
-  font-size: 1.25rem;
+  font-size: 30px;
+  font-weight: bold;
   display: flex;
   justify-content: center;
-  align-items: stretch;
-  line-height: 2rem;
-  padding: 20px 50px;
-}
-
-.modal-body #starRating li {
-  display: inline-block;
-  list-style: none;
+  align-items: flex-start;
+  height: 10vh;
 }
 
 .modal-footer {
-  padding-bottom: 2.5vh;
   color: #fff;
   text-align: center;
+  padding-bottom: 6vh;
 }
 
 #modal-btn {
-  background-color: rgba(50, 205, 50, 0.3);
-  padding: 1em 2em;
-  font-size: 1em;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1rem 3rem;
+  font-size: 1rem;
   color: #fff;
   border: 0;
   border-radius: 5px;
@@ -81,5 +90,5 @@ body {
 }
 
 #modal-btn:hover {
-  background-color: rgba(50, 205, 50, 0.6);
+  background: rgba(0, 0, 0, 0.6);
 }

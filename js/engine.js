@@ -34,31 +34,18 @@ var Engine = (function(global) {
         modalBtn = document.querySelector("#modal-btn");
 
     // Events
-
-    window.addEventListener("click", outsideClick);
-
-    //const modalBtn = document.querySelector( "#modal-btn" );
+    
     modalBtn.addEventListener("click", () => {
         reset();
         closeModal();
     });
 
-    // Open Modal
-    function openModal() {
-        modal.style.display = "block";
-    }
-
-    // Close Modal
-    function closeModal() {
-        modal.style.display = "none";
-    }
-
-    // Close If Outside Click
-    function outsideClick(e) {
-        if (e.target == modal) {
+    window.addEventListener("click", event => {
+        if (event.target == modal) {
+            reset();
             modal.style.display = "none";
         }
-    }
+    });
 
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
@@ -89,18 +76,20 @@ var Engine = (function(global) {
          */
 
         if (player.life === 0) {
-            win.requestAnimationFrame(main);
+            lifeDiv.innerHTML = " Live : 0 ";
             frameID = win.requestAnimationFrame(main);
             win.cancelAnimationFrame(frameID);
             modalText.innerText = "Sorry! You Lost";
             openModal();
         } else if (player.y < 0) {
+            player.score += 50;
+            scoreDiv.innerHTML = ` Points : ${player.score} `;
             frameID = win.requestAnimationFrame(main);
             win.cancelAnimationFrame(frameID);
             modalText.innerText = "Congrats! You Won";
             openModal();
         } else {
-            win.requestAnimationFrame(main);
+            frameID = win.requestAnimationFrame(main);
         }
     }
 
@@ -146,8 +135,7 @@ var Engine = (function(global) {
                 const colIndex = getAnIndex(0, 4);
                 const rowIndex = getAnIndex(4, 5);
                 player.setPosition(rowIndex, colIndex);
-
-                player.life--;
+                if (player.life > 0) player.life--;
             }
         });
     }
@@ -182,7 +170,6 @@ var Engine = (function(global) {
                         colIndex = getAnIndex(0, 4);
 
                     item.setPosition(rowIndex, colIndex);
-
                     break;
                 }
             }
@@ -214,8 +201,7 @@ var Engine = (function(global) {
         /* This array holds the relative URL to the image used
          * for that particular row of the game level.
          */
-        let header = "images/header.png", // Header
-            rowImages = [
+        let rowImages = [
                 "images/water-block.png", // Top row is water
                 "images/stone-block.png", // Row 1 of 3 of stone
                 "images/stone-block.png", // Row 2 of 3 of stone
@@ -226,12 +212,15 @@ var Engine = (function(global) {
             numRows = 6,
             numCols = 5,
             row,
-            col;
+            col,
+
+        background = new Image();
+        background.src = "images/geometry.png";
+
+        background.onload = () => ctx.drawImage( background, 0, 0);    
 
         // Before drawing, clear existing canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        //ctx.drawImage(Resources.get(header), 0, 0);
 
         /* Loop through the number of rows and columns we've defined above
          * and, using the rowImages array, draw the correct image for that
@@ -272,8 +261,6 @@ var Engine = (function(global) {
         player.render();
 
         items.forEach(function(item) {
-            //if ( item.name === "Heart" && player.life < 3 ) item.render( )
-            //if ( item.name !== "Heart" ) item.render( );
             item.render();
         });
     }
@@ -317,8 +304,7 @@ var Engine = (function(global) {
         "images/Heart.png",
         "images/Gem Orange.png",
         "images/Gem Blue.png",
-        "images/Gem Green.png",
-        "images/header.png"
+        "images/Gem Green.png"
     ]);
     Resources.onReady(init);
 

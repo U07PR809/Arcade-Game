@@ -67,8 +67,9 @@ const Player = function(sprite) {
 // Update the player's position, required method for game
 
 Player.prototype.update = function() {
-	lifeDiv.innerHTML = `You have ( ${this.life} ) Lives`;
-	scoreDiv.innerHTML = `Your Score is ( ${this.score} ) Points`;
+	lifeDiv.innerHTML =
+		this.life > 1 ? ` Lives : ${this.life} ` : ` Live : ${this.life} `;
+	scoreDiv.innerHTML = ` Points : ${this.score} `;
 };
 
 Player.prototype.setPosition = function(rowIndex, colIndex) {
@@ -139,7 +140,7 @@ Gem.prototype.addPoint = function() {
 
 Gem.prototype.setPosition = function(rowIndex, colIndex) {
 	this.x = colIndex * 101;
-	this.y = rowIndex * 83;
+	this.y = rowIndex * 83 - 13;
 };
 
 // Draw the collectible gems on the screen
@@ -147,8 +148,8 @@ Gem.prototype.setPosition = function(rowIndex, colIndex) {
 Gem.prototype.render = function() {
 	let gem = `images/Gem ${this.color}.png`;
 
-	const width = 0.8 * Resources.get(gem).width;
-	const height = 0.8 * Resources.get(gem).height;
+	const width = 0.9 * Resources.get(gem).width;
+	const height = 0.9 * Resources.get(gem).height;
 
 	ctx.drawImage(Resources.get(gem), this.x, this.y, width, height);
 };
@@ -190,7 +191,6 @@ function getAnIndex(lowerIndex, upperIndex) {
 }
 
 function setSpeed() {
-	//console.log( 'score', player.score );
 	const baseSpeed = 50,
 		dSpeed = 20,
 		aSpeed = baseSpeed + Math.ceil(Math.random() * 10) * dSpeed;
