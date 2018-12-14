@@ -34,7 +34,7 @@ var Engine = (function(global) {
         modalBtn = document.querySelector("#modal-btn");
 
     // Events
-    
+
     modalBtn.addEventListener("click", () => {
         reset();
         closeModal();
@@ -212,13 +212,8 @@ var Engine = (function(global) {
             numRows = 6,
             numCols = 5,
             row,
-            col,
-
-        background = new Image();
-        background.src = "images/geometry.png";
-
-        background.onload = () => ctx.drawImage( background, 0, 0);    
-
+            col;
+            
         // Before drawing, clear existing canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
